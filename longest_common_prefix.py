@@ -3,7 +3,7 @@ Write a function to find the longest common prefix string amongst an array of st
 
 If there is no common prefix, return an empty string "".
 
- 
+
 
 Example 1:
 
@@ -14,7 +14,7 @@ Example 2:
 Input: strs = ["dog","racecar","car"]
 Output: ""
 Explanation: There is no common prefix among the input strings.
- 
+
 
 Constraints:
 
@@ -22,6 +22,37 @@ Constraints:
 0 <= strs[i].length <= 200
 strs[i] consists of only lowercase English letters if it is non-empty.
 """
+
 import os
+
 os.system("cls")
 
+
+def main():
+    strs = ["Flower","flow","flight"]
+    longestCommonPrefix(strs)
+
+
+def longestCommonPrefix(strs: list[str]) -> str:
+    if strs == "" or strs == [""]:
+        return ""
+
+    prefix = ""
+    strs = [word.lower() for word in strs]
+    strs.sort(key=len)
+
+    for i in range(len(strs[0])):
+        letra_guia = strs[0][i]
+
+        for word in strs:
+            if word[i] != letra_guia:
+                print(prefix)
+                return prefix
+
+        prefix += word[i]
+
+    return prefix
+
+
+if __name__ == "__main__":
+    main()
